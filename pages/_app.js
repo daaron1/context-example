@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   /* TODO: create ItemContext and wrap below in provider */
-  const [plants, setPlants] = useState([
+  const [items, setItem] = useState([
     { 
       name: 'Snake Plant', 
       img: 'https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/products/SnakePlant_3.jpg?v=1589545105',
@@ -46,15 +46,17 @@ function MyApp({ Component, pageProps }) {
       price: 120
     }
   ])
-  const itemsValue = { plants, setPlants }
+  const itemsValue = { items, setItem }
 
   /* 
    * Wraps all components that consume the context in 
    * a provider, and passes in the default value. 
   */
   return <UserContext.Provider value={userValue}>
+    <ItemContext.Provider value={itemsValue}>
       <Component {...pageProps} />
-  </UserContext.Provider>
+      </ItemContext.Provider>
+    </UserContext.Provider>
 }
 
 export default MyApp
